@@ -23,7 +23,7 @@ class Comment
 end
 ```
 
-I want an instance method clled `Comment#user` that will return the `User` whose blog the comment was posted to.  The standard way to do this is with `delegate`:
+I want an instance method called `Comment#user` that will return the `User` whose blog the comment was posted to.  The standard way to do this is with `delegate`:
 
 ```ruby
 class User
@@ -56,7 +56,7 @@ class Comment
   belongs_to :post
 
   def user
-    User.includes(blog: :post).find_by('posts.id = ?', post_id)
+    User.joins(blogs: :posts).find_by('posts.id = ?', post_id)
   end
 end
 ```
